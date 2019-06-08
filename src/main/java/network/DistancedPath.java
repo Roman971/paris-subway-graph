@@ -19,7 +19,7 @@ public class DistancedPath extends WEdge<Station> {
     public static double computeDistance(Station origin, Station destination) {
         int deglen = 110250;
         double deltaX = origin.getLatitude() - destination.getLatitude();
-        double deltaY = (origin.getLatitude() - destination.getLatitude()) * Math.cos(destination.getLatitude());
+        double deltaY = (origin.getLongitude() - destination.getLongitude()) * Math.cos(destination.getLatitude());
         return deglen * Math.sqrt(deltaX * deltaX + deltaY * deltaY);
     }
 
