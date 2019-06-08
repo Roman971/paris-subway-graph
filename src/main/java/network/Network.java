@@ -6,13 +6,13 @@ import java.util.stream.Collectors;
 
 import graph.BFSShortestPaths;
 
-public class BaseNetwork extends AbstractNetwork<Path> {
+public class Network extends AbstractNetwork<Path> {
 
-    public BaseNetwork() {
+    public Network() {
         super();
     }
 
-    public BaseNetwork(String jsonData) {
+    public Network(String jsonData) {
         super(jsonData);
     }
 

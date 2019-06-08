@@ -10,7 +10,7 @@ import java.io.UnsupportedEncodingException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
-import network.BaseNetwork;
+import network.Network;
 import network.DistancedNetwork;
 import network.DistancedPath;
 import network.Station;
@@ -34,7 +34,7 @@ public class Main {
 
     public static void unweightedGraph(PrintStream out) throws UnsupportedEncodingException, IOException {
         String jsonNetworkData = new String(Files.readAllBytes(Paths.get("data/reseau.json")), "UTF-8");
-        BaseNetwork subwayNetwork = new BaseNetwork(jsonNetworkData);
+        Network subwayNetwork = new Network(jsonNetworkData);
 
         out.println(subwayNetwork);
 
