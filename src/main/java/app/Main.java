@@ -72,7 +72,7 @@ public class Main {
 
         List<DistancedPath> paths = subwayNetwork.getPathListFromStationPath(diameterPath);
         Stream<Object> pathStringStream = paths.stream()
-                .map(path -> path.from().getName() + "-" + path.to().getName() + ": " + path.getDistanceStr() + "m");
+                .map(path -> path.from().getName() + "-" + path.to().getName() + ": " + path.getDistanceStr());
         out.println("\nLength of sub-paths: " + String.join("; ", pathStringStream.toArray(String[]::new)));
 
         double totalLength = 0;
@@ -99,7 +99,7 @@ public class Main {
             }
         }
 
-        out.print("Paths ordered by betweenness:\n");
+        out.print("Edges with the highest betweenness:\n");
         betweennessMap.entrySet().stream().sorted(Map.Entry.comparingByValue(Comparator.reverseOrder())).limit(10)
                 .forEach(entry -> out.println(entry.getKey() + " = " + entry.getValue()));
     }
