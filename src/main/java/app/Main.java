@@ -33,7 +33,7 @@ public class Main {
     }
 
     public static void unweightedGraph(PrintStream out) throws UnsupportedEncodingException, IOException {
-        String jsonNetworkData = new String(Files.readAllBytes(Paths.get("data/reseau.json")), "UTF-8");
+        String jsonNetworkData = new String(Files.readAllBytes(Paths.get("data/network.json")), "UTF-8");
         Network subwayNetwork = new Network(jsonNetworkData);
 
         out.println(subwayNetwork);
@@ -49,7 +49,7 @@ public class Main {
     }
 
     public static void weightedGraph(PrintStream out) throws UnsupportedEncodingException, IOException {
-        String jsonNetworkData = new String(Files.readAllBytes(Paths.get("data/reseau.json")), "UTF-8");
+        String jsonNetworkData = new String(Files.readAllBytes(Paths.get("data/network.json")), "UTF-8");
         DistancedNetwork subwayNetwork = new DistancedNetwork(jsonNetworkData);
 
         out.println(subwayNetwork);
