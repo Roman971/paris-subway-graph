@@ -22,6 +22,7 @@ public class DistancedNetwork extends AbstractNetwork<DistancedPath> {
 
     public List<Station> getDiameterPath() {
         DijkstraSP<Station, DistancedPath> SP = new DijkstraSP<>(this.order());
+
         List<Integer> maxPathIds = new ArrayList<>();
         for (Station origin : this.nodes()) {
             SP.process(this, origin);
@@ -32,6 +33,7 @@ public class DistancedNetwork extends AbstractNetwork<DistancedPath> {
                 }
             }
         }
+
         return maxPathIds.stream().map(id -> this.nodeFromIndex(id)).collect(Collectors.toList());
     }
 
