@@ -22,6 +22,7 @@ public class Network extends AbstractNetwork<Path> {
 
     public List<Station> getDiameterPath() {
         BFSShortestPaths<Station, Path> SP = new BFSShortestPaths<>(this.order());
+
         List<Integer> maxPathIds = new ArrayList<>();
         for (Station origin : this.nodes()) {
             SP.process(this, origin);
@@ -32,7 +33,27 @@ public class Network extends AbstractNetwork<Path> {
                 }
             }
         }
+
         return maxPathIds.stream().map(id -> this.nodeFromIndex(id)).collect(Collectors.toList());
+    }
+
+    public List<List<Path>> getAllShortestPaths() {
+        BFSShortestPaths<Station, Path> SP = new BFSShortestPaths<>(this.order());
+
+        List<List<Integer>> pathIdsList = new ArrayList<>();
+        for (Station origin : this.nodes()) {
+            SP.process(this, origin);
+            for (Station dest : this.nodes()) {
+                pathIdsList.add(SP.getPathIdsTo(this.nodeIndex(dest)));
+            }
+        }
+
+        List<List<Station>> stationList = pathIdsList.stream()
+                .map(l -> l.stream().map(id -> this.nodeFromIndex(id)).collect(Collectors.toList()))
+                .collect(Collectors.toList());
+
+        return stationList.stream().map(pathStations -> this.getPathListFromStationPath(pathStations))
+                .collect(Collectors.toList());
     }
 
 }

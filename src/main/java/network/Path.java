@@ -15,4 +15,9 @@ public class Path extends Edge<Station> {
         return this.line;
     }
 
+    @Override
+    public String toString() {
+        return this.from().getName() + " => " + this.to().getName();
+    }
+
 }

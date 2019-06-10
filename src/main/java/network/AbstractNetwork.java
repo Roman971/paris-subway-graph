@@ -1,9 +1,11 @@
 package network;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import com.google.gson.JsonArray;
@@ -97,6 +99,11 @@ public abstract class AbstractNetwork<P extends Edge<Station>> extends Graph<Sta
             }
         }
         return null;
+    }
+
+    public Set<P> getAllPaths() {
+        return this.nodes().stream().map(station -> this.neighbors(station)).flatMap(Collection::stream)
+                .collect(Collectors.toSet());
     }
 
     public List<P> getPathListFromStationPath(List<Station> stationPath) {

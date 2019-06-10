@@ -20,7 +20,7 @@ public class Edge<N> {
 
     @Override
     public String toString() {
-        return this.v + " -> " + this.w;
+        return this.v + " => " + this.w;
     }
 
 }
