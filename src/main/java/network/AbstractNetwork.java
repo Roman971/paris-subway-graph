@@ -124,12 +124,12 @@ public abstract class AbstractNetwork<P extends Edge<Station>> extends Graph<Sta
     public String toString() {
         String output = String.format("Paris Network (%d Lines, %d Stations)", this.lines.size(), this.order());
 
-        output += "\n\nLines:";
+        output += "\n\nList of Lines:";
         for (Line line : this.lines) {
             output += "\n" + line;
         }
 
-        output += "\n\nStations:";
+        output += "\n\nList of Stations:";
         for (Station station : this.nodes()) {
             Stream<Object> adjacentPathNames = neighbors(station).stream().map(path -> path.to().getName());
             output += "\n" + station + " : " + String.join(", ", adjacentPathNames.toArray(String[]::new));
