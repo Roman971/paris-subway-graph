@@ -99,6 +99,18 @@ public abstract class AbstractNetwork<P extends Edge<Station>> extends Graph<Sta
         return null;
     }
 
+    public List<P> getPathListFromStationPath(List<Station> stationPath) {
+        List<P> pathList = new ArrayList<>();
+        Iterator<Station> stationsItr = stationPath.iterator();
+        Station origin = stationsItr.next();
+        while (stationsItr.hasNext()) {
+            Station dest = stationsItr.next();
+            pathList.add(this.getPathFromStations(origin, dest));
+            origin = dest;
+        }
+        return pathList;
+    }
+
     public P getPathFromStations(Station origin, Station destination) {
         for (P path : this.neighbors(origin)) {
             if (path.to() == destination) {

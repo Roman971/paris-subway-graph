@@ -1,7 +1,5 @@
 package app;
 
-import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Stream;
 import java.io.IOException;
@@ -60,15 +58,7 @@ public class Main {
         out.println();
         out.println("Diameter Path: " + String.join(" => ", diameterPathNames.toArray(String[]::new)));
 
-        List<DistancedPath> paths = new ArrayList<>();
-        Iterator<Station> stationsItr = diameterPath.iterator();
-        Station origin = stationsItr.next();
-        while (stationsItr.hasNext()) {
-            Station dest = stationsItr.next();
-            paths.add(subwayNetwork.getPathFromStations(origin, dest));
-            origin = dest;
-        }
-
+        List<DistancedPath> paths = subwayNetwork.getPathListFromStationPath(diameterPath);
         Stream<Object> pathStringStream = paths.stream().map(
                 path -> path.from().getName() + "-" + path.to().getName() + ": " + Math.round(path.getWeight()) + "m");
         out.println("Length of sub-paths: " + String.join("; ", pathStringStream.toArray(String[]::new)));
